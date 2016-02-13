@@ -19,9 +19,14 @@ then
 				echo "    Removing \"$target\"" && rm -rf $target
 			fi
 
-			echo "    Linking \"$source\" to \"$target\"" && mkdir -p $(dirname "${target}") && ln -s $source $target
+			echo "    Copying \"$source\" to \"$target\"" && mkdir -p $(dirname "${target}") && cp $source $target
 		fi
 	done
+fi
+
+if [ -d /etc/nginx ]
+then
+	find /etc/nginx -type f -print0 | xargs -0 sed -i "s/\${HOSTNAME}/${HOSTNAME}/g"
 fi
 
 if [ ! -f $FILE_KEY ]
