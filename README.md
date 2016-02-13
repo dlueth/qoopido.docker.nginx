@@ -2,7 +2,7 @@
 ```
 docker run -d -P -t -i -p 80:80 -p 443:443 \
 	-h [hostname]
-	-v [local path to apache htdocs]:/app/htdocs \
+	-v [local path to htdocs]:/app/htdocs \
 	-v [local path to ssl certificates]:/app/ssl \
 	-v [local path to logs]:/app/logs \
 	-v [local path to config]:/app/config \
