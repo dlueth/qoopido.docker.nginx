@@ -37,7 +37,6 @@ MAINTAINER Dirk Lüth <info@qoopido.com>
     	apt-get install -qy ca-certificates nginx=1.9.11-1~trusty gettext-base
 		
 # add default /app directory
-	ADD app /app
 	RUN mkdir -p /app/htdocs && \
 		mkdir -p /app/ssl && \
 		mkdir -p /app/logs/nginx
