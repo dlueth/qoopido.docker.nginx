@@ -34,9 +34,9 @@ MAINTAINER Dirk Lüth <info@qoopido.com>
 		apt-get update && \
 		apt-get -qy upgrade && \
     	apt-get -qy dist-upgrade && \
-    	apt-get install -qy ca-certificates nginx=1.9.11-1~trusty gettext-base
+    	apt-get install -qy ca-certificates nginx gettext-base
 		
-# add default /app directory
+# create required directories
 	RUN mkdir -p /app/htdocs && \
 		mkdir -p /app/ssl && \
 		mkdir -p /app/logs/nginx
