@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# source /etc/apache2/envvars
+# exec /usr/sbin/apache2ctl -k restart -D FOREGROUND  > /dev/null 2>&1
+
+exec /usr/sbin/nginx > /dev/null 2>&1
