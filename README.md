@@ -6,8 +6,11 @@ project root
   - docker_compose.yaml
   - config
     - nginx
+      - initialize.sh (if needed)
       - sites-enabled
+        - ...
       - snippets
+        - ...
   - htdocs
   - ssl
   - logs
