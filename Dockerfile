@@ -43,6 +43,8 @@ MAINTAINER Dirk Lüth <info@qoopido.com>
 
 # cleanup
 	RUN apt-get clean && \
+		apt-get autoclean && \
+		apt-get autoremove && \
 		rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /configure.sh
 
 # finalize
