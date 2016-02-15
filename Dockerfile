@@ -27,11 +27,18 @@ MAINTAINER Dirk Lüth <info@qoopido.com>
 		chmod 755 /etc/my_init.d/*.sh && \
 		chmod +x /etc/service/nginx/run && \
 		chmod 755 /etc/service/nginx/run
-	
+
+# add nginx repository
+	ADD nginx.key /nginx.key
+	RUN echo "deb http://nginx.org/packages/mainline/ubuntu/ trusty nginx" >> /etc/apt/sources.list && \
+		sudo apt-key add nginx.key
+
+# apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 && \
+# echo "deb http://nginx.org/packages/mainline/ubuntu/ trusty nginx" >> /etc/apt/sources.list && \
+
+
 # install packages
-	RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 && \
-		echo "deb http://nginx.org/packages/mainline/ubuntu/ trusty nginx" >> /etc/apt/sources.list && \
-		apt-get update && \
+	RUN apt-get update && \
 		apt-get -qy upgrade && \
     	apt-get -qy dist-upgrade && \
     	apt-get install -qy ca-certificates nginx gettext-base
@@ -45,7 +52,7 @@ MAINTAINER Dirk Lüth <info@qoopido.com>
 	RUN apt-get clean && \
 		apt-get autoclean && \
 		apt-get autoremove && \
-		rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /configure.sh
+		rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /configure.sh /nginx.key
 
 # finalize
 	VOLUME ["/app/htdocs", "/app/ssl", "/app/logs", "/app/config"]
