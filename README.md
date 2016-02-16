@@ -16,7 +16,7 @@ project root
   - logs
 ```
 
-# Example docker_compose.yaml #
+# Example docker-compose.yaml #
 ```
 web:
   image: qoopido/nginx:latest
