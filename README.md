@@ -3,7 +3,7 @@ Like with my other containers I encourage you to follow a unified directory stru
 
 ```
 project root
-  - docker_compose.yaml
+  - docker-compose.yaml
   - htdocs
   - config
     - nginx
