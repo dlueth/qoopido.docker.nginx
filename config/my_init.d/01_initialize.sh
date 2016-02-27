@@ -2,17 +2,17 @@
 
 HOSTNAME=$(hostname)
 INIT="/etc/nginx/initialize.sh"
-FILE_KEY="/app/ssl/$HOSTNAME.key"
-FILE_CRT="/app/ssl/$HOSTNAME.crt"
+FILE_KEY="/app/data/certificates/$HOSTNAME.key"
+FILE_CRT="/app/data/certificates/$HOSTNAME.crt"
 
-if [ -d /app/config/nginx ]
+if [ -d /app/config ]
 then
-	files=($(find /app/config/nginx -type f))
+	files=($(find /app/config -type f))
 
 	for source in "${files[@]}"
 	do
 		pattern="\.DS_Store"
-		target=${source/\/app\/config\/nginx/\/etc\/nginx}
+		target=${source/\/app\/config/\/etc\/nginx}
 
 		if [[ ! $target =~ $pattern ]]; then
 			if [[ -f $target ]]; then
@@ -35,8 +35,9 @@ then
 fi
 
 mkdir -p /app/htdocs
-mkdir -p /app/ssl
-mkdir -p /app/logs/nginx
+mkdir -p /app/data/certificates
+mkdir -p /app/data/logs
+mkdir -p /app/config
 
 if [ -f $INIT ]
 then

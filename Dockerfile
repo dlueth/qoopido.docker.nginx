@@ -33,10 +33,6 @@ MAINTAINER Dirk Lüth <info@qoopido.com>
 	RUN echo "deb http://nginx.org/packages/mainline/ubuntu/ trusty nginx" >> /etc/apt/sources.list && \
 		sudo apt-key add nginx.key
 
-# apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 && \
-# echo "deb http://nginx.org/packages/mainline/ubuntu/ trusty nginx" >> /etc/apt/sources.list && \
-
-
 # install packages
 	RUN apt-get update && \
 		apt-get -qy upgrade && \
@@ -45,8 +41,9 @@ MAINTAINER Dirk Lüth <info@qoopido.com>
 		
 # create required directories
 	RUN mkdir -p /app/htdocs && \
-		mkdir -p /app/ssl && \
-		mkdir -p /app/logs/nginx
+		mkdir -p /app/data/certificates && \
+        mkdir -p /app/data/logs && \
+        mkdir -p /app/config
 
 # cleanup
 	RUN apt-get clean && \
@@ -55,6 +52,7 @@ MAINTAINER Dirk Lüth <info@qoopido.com>
 		rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /configure.sh /nginx.key
 
 # finalize
-	VOLUME ["/app/htdocs", "/app/ssl", "/app/logs", "/app/config"]
+	VOLUME ["/app/htdocs", "/app/data", "/app/config"]
 	EXPOSE 80
+	EXPOSE 8080
 	EXPOSE 443
