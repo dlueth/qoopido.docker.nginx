@@ -48,6 +48,6 @@ The container comes with a default configuration for nginx under ```/etc/nginx/n
 
 Any files mounted under ```/app/config``` will be copied into the container's filesystem beginning at ```/etc/nginx```. This may be used to overwrite the container's default configuration with a custom, project specific configuration to (e.g.) include php fpm fastCGI proxy (which requires linking a php fpm container). Every file will be searched for a string ```${HOSTNAME}``` which will be replaced by the actual hostname.
 
-If you need a custom shell script to be run on start (e.g. to set symlinks) you can do so by creating the file ```/app/config/initialize.sh```.
+If you need a custom shell script to be run on start or stop (e.g. to set symlinks) you can do so by creating the file ```/app/config/up.sh``` or ```/app/config/down.sh```.
 
 SSL certificates will be auto-generated per hostname if no key/crt file can be found in ```/app/data/certificates/[hostname].[key|crt]```.

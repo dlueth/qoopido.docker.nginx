@@ -1,6 +1,17 @@
 #!/bin/bash
 
-# source /etc/apache2/envvars
-# exec /usr/sbin/apache2ctl -k restart -D FOREGROUND  > /dev/null 2>&1
+down()
+{
+	local DOWN="/etc/nginx/down.sh"
+
+	if [ -f $DOWN ]
+    then
+    	 chmod +x $DOWN && chmod 755 $DOWN && eval $DOWN;
+    fi
+
+    exit
+}
+
+trap down SIGTERM
 
 exec /usr/sbin/nginx > /dev/null 2>&1
