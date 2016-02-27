@@ -15,4 +15,4 @@ down()
 
 trap down SIGTERM
 
-exec /usr/sbin/nginx > /dev/null 2>&1
+exec /usr/sbin/nginx > /dev/null 2>&1 & wait
